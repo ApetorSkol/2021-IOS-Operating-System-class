@@ -1,0 +1,189 @@
+10:celkem bodu za projekt
+#-- automaticke hodnoceni -----------------------------
+1:ok: opis vstupniho souboru na vystup
+1:ok: opis vice vstupnich souboru na vystup
+1:ok: opis vice vstupnich souboru vcetne gz na vystup
+0:cat4: opis stdin na stdout
+# ./tradelog <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1 +0,0 @@
+#   -2021-07-29 15:30:42;MSFT;sell;240.07;USD;327;65fad854-7943-11eb-929d-8c85906a186d
+1:ok: prikaz graph-pos
+0:cmd-hist-ord: chyba pri spusteni, mozne priciny:
+:chybny soubor, timeout 10s nebo limit velikosti souboru
+/.sanitized./ios-21-1/tst: line 396: errcode: No such file or directory
+0:cmd-hist-ord: prikaz hist-ord
+# ./tradelog hist-ord test.log <stdin >>stdout 2>>stderr; echo $? >>errcode
+# errcode=; ocekavan errcode=0
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1,49 +0,0 @@
+#   -AAPL      : #######
+#   -ABBV      : ######
+#   -ABT       : ##########
+#   -ACN       : #######
+#   -ADBE      : ###
+#   -AMZN      : ######
+#   -ASML      : #########
+#   -AVGO      : ########
+#   -BABA      : #######
+#   -BAC       : ######
+#   -BHP       : ########
+#   -CMCSA     : #########
+#   -CRM       : #####
+#   -CSCO      : ####
+#   -CVX       : #####
+# Vypis byl zkracen, cely text viz cmd-hist-ord/hodnoceni-auto
+1:ok: prikaz last-price
+1:ok: prikaz list-tick
+0:cmd-pos: chyba pri spusteni, mozne priciny:
+:chybny soubor, timeout 10s nebo limit velikosti souboru
+/.sanitized./ios-21-1/tst: line 396: errcode: No such file or directory
+0:cmd-pos: prikaz pos
+# ./tradelog pos test.log <stdin >>stdout 2>>stderr; echo $? >>errcode
+# errcode=; ocekavan errcode=0
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1,49 +0,0 @@
+#   -SHOP      :  15884926.56
+#   -NVDA      :   9951675.78
+#   -FB        :   7353596.97
+#   -BABA      :   5108380.50
+#   -CRM       :   4768527.88
+#   -DIS       :   4305795.26
+#   -V         :   4236659.28
+#   -UNH       :   3284959.36
+#   -PDD       :   3214216.80
+#   -ACN       :   2675684.86
+#   -TM        :   1917188.26
+#   -PYPL      :   1639248.50
+#   -LLY       :   1409758.80
+#   -ORCL      :   1084615.56
+#   -NKE       :   1016613.95
+# Vypis byl zkracen, cely text viz cmd-pos/hodnoceni-auto
+1:ok: prikaz profit
+0:filter-a: filtr -a
+# ./tradelog -a '2021-01-11 17:59:58' test.log <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1,269 +0,0 @@
+#   -2021-01-11 18:04:48;PG;buy;134.91;USD;2075;dba1262e-9e2a-11eb-a383-8c85906a186d
+#   -2021-01-11 18:12:59;BHP;buy;80.01;USD;2491;dba126f6-9e2a-11eb-8c0c-8c85906a186d
+#   -2021-01-11 18:19:16;CMCSA;sell;48.18;USD;1209;dba127b4-9e2a-11eb-8bd2-8c85906a186d
+#   -2021-01-11 18:23:47;AMZN;sell;3365.99;USD;6847;dba1287c-9e2a-11eb-8230-8c85906a186d
+#   -2021-01-11 18:26:33;TMO;sell;465.14;USD;6686;dba12944-9e2a-11eb-9114-8c85906a186d
+#   -2021-01-11 18:33:52;PFE;sell;31.92;USD;6415;dba12a02-9e2a-11eb-9728-8c85906a186d
+#   -2021-01-11 18:39:12;NVO;buy;75.29;USD;6740;dba12aca-9e2a-11eb-8329-8c85906a186d
+#   -2021-01-11 18:44:13;CRM;buy;248.29;USD;9067;dba12b92-9e2a-11eb-a2e9-8c85906a186d
+#   -2021-01-11 18:51:17;MSFT;buy;229.30;USD;2585;dba12c50-9e2a-11eb-9101-8c85906a186d
+#   -2021-01-11 18:53:10;PEP;sell;128.95;USD;841;dba12d18-9e2a-11eb-8067-8c85906a186d
+#   -2021-01-11 19:02:42;CVX;buy;106.06;USD;1588;dba12de0-9e2a-11eb-a0e2-8c85906a186d
+#   -2021-01-11 19:09:56;TSM;sell;128.88;USD;2973;dba12ea8-9e2a-11eb-97d6-8c85906a186d
+#   -2021-01-11 19:13:27;DIS;buy;184.55;USD;6726;dba12f66-9e2a-11eb-8e51-8c85906a186d
+#   -2021-01-11 19:16:52;CMCSA;sell;51.67;USD;6666;dba1302e-9e2a-11eb-8efa-8c85906a186d
+#   -2021-01-11 19:19:35;CRM;buy;254.75;USD;1600;dba130ec-9e2a-11eb-9e19-8c85906a186d
+#   -2021-01-11 19:27:19;TM;buy;163.37;USD;6681;dba131b4-9e2a-11eb-847f-8c85906a186d
+#   -2021-01-11 19:33:07;ASML;sell;572.61;USD;3753;dba13272-9e2a-11eb-9137-8c85906a186d
+#   -2021-01-11 19:35:45;PDD;buy;186.90;USD;2857;dba1333a-9e2a-11eb-89f7-8c85906a186d
+#   -2021-01-11 19:41:35;TSLA;buy;681.25;USD;5014;dba13402-9e2a-11eb-82d9-8c85906a186d
+# Vypis byl zkracen, cely text viz filter-a/hodnoceni-auto
+0:filter-ab: filtry -a i -b
+# ./tradelog -a '2021-01-11 17:59:58' -b '2021-01-12 15:43:10' test.log <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1,243 +0,0 @@
+#   -2021-01-11 18:04:48;PG;buy;134.91;USD;2075;dba1262e-9e2a-11eb-a383-8c85906a186d
+#   -2021-01-11 18:12:59;BHP;buy;80.01;USD;2491;dba126f6-9e2a-11eb-8c0c-8c85906a186d
+#   -2021-01-11 18:19:16;CMCSA;sell;48.18;USD;1209;dba127b4-9e2a-11eb-8bd2-8c85906a186d
+#   -2021-01-11 18:23:47;AMZN;sell;3365.99;USD;6847;dba1287c-9e2a-11eb-8230-8c85906a186d
+#   -2021-01-11 18:26:33;TMO;sell;465.14;USD;6686;dba12944-9e2a-11eb-9114-8c85906a186d
+#   -2021-01-11 18:33:52;PFE;sell;31.92;USD;6415;dba12a02-9e2a-11eb-9728-8c85906a186d
+#   -2021-01-11 18:39:12;NVO;buy;75.29;USD;6740;dba12aca-9e2a-11eb-8329-8c85906a186d
+#   -2021-01-11 18:44:13;CRM;buy;248.29;USD;9067;dba12b92-9e2a-11eb-a2e9-8c85906a186d
+#   -2021-01-11 18:51:17;MSFT;buy;229.30;USD;2585;dba12c50-9e2a-11eb-9101-8c85906a186d
+#   -2021-01-11 18:53:10;PEP;sell;128.95;USD;841;dba12d18-9e2a-11eb-8067-8c85906a186d
+#   -2021-01-11 19:02:42;CVX;buy;106.06;USD;1588;dba12de0-9e2a-11eb-a0e2-8c85906a186d
+#   -2021-01-11 19:09:56;TSM;sell;128.88;USD;2973;dba12ea8-9e2a-11eb-97d6-8c85906a186d
+#   -2021-01-11 19:13:27;DIS;buy;184.55;USD;6726;dba12f66-9e2a-11eb-8e51-8c85906a186d
+#   -2021-01-11 19:16:52;CMCSA;sell;51.67;USD;6666;dba1302e-9e2a-11eb-8efa-8c85906a186d
+#   -2021-01-11 19:19:35;CRM;buy;254.75;USD;1600;dba130ec-9e2a-11eb-9e19-8c85906a186d
+#   -2021-01-11 19:27:19;TM;buy;163.37;USD;6681;dba131b4-9e2a-11eb-847f-8c85906a186d
+#   -2021-01-11 19:33:07;ASML;sell;572.61;USD;3753;dba13272-9e2a-11eb-9137-8c85906a186d
+#   -2021-01-11 19:35:45;PDD;buy;186.90;USD;2857;dba1333a-9e2a-11eb-89f7-8c85906a186d
+#   -2021-01-11 19:41:35;TSLA;buy;681.25;USD;5014;dba13402-9e2a-11eb-82d9-8c85906a186d
+# Vypis byl zkracen, cely text viz filter-ab/hodnoceni-auto
+0:filter-b: filtr -b
+# ./tradelog -b '2021-01-12 15:43:10' test.log <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1,274 +0,0 @@
+#   -2021-01-11 15:10:02;BHP;buy;83.18;USD;458;dba104be-9e2a-11eb-8551-8c85906a186d
+#   -2021-01-11 15:16:24;WMT;sell;132.16;USD;255;dba10b26-9e2a-11eb-a317-8c85906a186d
+#   -2021-01-11 15:19:25;TM;sell;147.82;USD;6333;dba10c52-9e2a-11eb-86b1-8c85906a186d
+#   -2021-01-11 15:22:08;MSFT;sell;212.29;USD;2239;dba10d42-9e2a-11eb-8943-8c85906a186d
+#   -2021-01-11 15:27:55;MRK;sell;67.70;USD;4661;dba10e28-9e2a-11eb-8e70-8c85906a186d
+#   -2021-01-11 15:37:53;PFE;sell;35.41;USD;8577;dba10efa-9e2a-11eb-8f45-8c85906a186d
+#   -2021-01-11 15:39:11;BHP;sell;79.84;USD;766;dba10fc2-9e2a-11eb-9840-8c85906a186d
+#   -2021-01-11 15:43:19;DIS;buy;177.73;USD;9735;dba1108a-9e2a-11eb-8feb-8c85906a186d
+#   -2021-01-11 15:51:21;CVX;buy;88.56;USD;9913;dba1115c-9e2a-11eb-9654-8c85906a186d
+#   -2021-01-11 15:54:49;PFE;buy;33.85;USD;5250;dba11224-9e2a-11eb-a503-8c85906a186d
+#   -2021-01-11 16:00:39;ABBV;sell;101.93;USD;5187;dba112f6-9e2a-11eb-922d-8c85906a186d
+#   -2021-01-11 16:08:07;V;sell;200.28;USD;8130;dba113be-9e2a-11eb-9974-8c85906a186d
+#   -2021-01-11 16:14:05;ASML;sell;629.42;USD;9146;dba11486-9e2a-11eb-9526-8c85906a186d
+#   -2021-01-11 16:24:01;AAPL;buy;124.37;USD;3026;dba11558-9e2a-11eb-a6bf-8c85906a186d
+#   -2021-01-11 16:32:06;WMT;sell;151.32;USD;8021;dba11620-9e2a-11eb-8a08-8c85906a186d
+#   -2021-01-11 16:40:51;CSCO;sell;41.53;USD;1336;dba116e8-9e2a-11eb-8927-8c85906a186d
+#   -2021-01-11 16:47:14;GOOG;buy;1875.19;USD;58;dba117b0-9e2a-11eb-9fd3-8c85906a186d
+#   -2021-01-11 16:48:53;AAPL;sell;121.13;USD;6022;dba11878-9e2a-11eb-8ade-8c85906a186d
+#   -2021-01-11 16:54:48;NKE;sell;149.21;USD;6672;dba11bf2-9e2a-11eb-8d41-8c85906a186d
+# Vypis byl zkracen, cely text viz filter-b/hodnoceni-auto
+0:filter-tick-cat: filtr -t
+# ./tradelog -t TSM test.log <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1,8 +0,0 @@
+#   -2021-01-11 19:09:56;TSM;sell;128.88;USD;2973;dba12ea8-9e2a-11eb-97d6-8c85906a186d
+#   -2021-01-11 20:30:59;TSM;buy;138.44;USD;421;dba13a24-9e2a-11eb-90d4-8c85906a186d
+#   -2021-01-11 23:01:57;TSM;buy;140.78;USD;2650;dba14ef6-9e2a-11eb-8486-8c85906a186d
+#   -2021-01-12 04:07:07;TSM;buy;129.44;USD;697;dba17cdc-9e2a-11eb-a2b7-8c85906a186d
+#   -2021-01-12 07:28:57;TSM;buy;129.19;USD;3420;dba198ac-9e2a-11eb-896d-8c85906a186d
+#   -2021-01-12 09:43:32;TSM;sell;121.73;USD;2754;dba1ae64-9e2a-11eb-a6e6-8c85906a186d
+#   -2021-01-12 10:08:58;TSM;sell;131.02;USD;6864;dba1b170-9e2a-11eb-a251-8c85906a186d
+#   -2021-01-12 17:11:13;TSM;buy;133.54;USD;1913;dba1ef1e-9e2a-11eb-8f0c-8c85906a186d
+0:filter-tick-cat2: filtr -t -t
+# ./tradelog -t TSM -t NVDA test.log <stdin >>stdout 2>>stderr; echo $? >>errcode
+# diff -u stdout.ref stdout
+#   --- stdout.ref
+#   +++ stdout
+#   @@ -1,17 +0,0 @@
+#   -2021-01-11 19:09:56;TSM;sell;128.88;USD;2973;dba12ea8-9e2a-11eb-97d6-8c85906a186d
+#   -2021-01-11 20:30:59;TSM;buy;138.44;USD;421;dba13a24-9e2a-11eb-90d4-8c85906a186d
+#   -2021-01-11 20:52:12;NVDA;buy;542.77;USD;4688;dba13e0c-9e2a-11eb-a3c4-8c85906a186d
+#   -2021-01-11 21:28:16;NVDA;sell;571.40;USD;8944;dba14118-9e2a-11eb-8367-8c85906a186d
+#   -2021-01-11 23:01:57;TSM;buy;140.78;USD;2650;dba14ef6-9e2a-11eb-8486-8c85906a186d
+#   -2021-01-12 02:35:35;NVDA;buy;583.36;USD;363;dba16e4a-9e2a-11eb-9323-8c85906a186d
+#   -2021-01-12 02:54:41;NVDA;buy;562.00;USD;2294;dba17228-9e2a-11eb-9051-8c85906a186d
+#   -2021-01-12 04:07:07;TSM;buy;129.44;USD;697;dba17cdc-9e2a-11eb-a2b7-8c85906a186d
+#   -2021-01-12 07:12:09;NVDA;sell;519.36;USD;83;dba19672-9e2a-11eb-8752-8c85906a186d
+#   -2021-01-12 07:28:57;TSM;buy;129.19;USD;3420;dba198ac-9e2a-11eb-896d-8c85906a186d
+#   -2021-01-12 08:15:56;NVDA;buy;541.05;USD;9492;dba19f64-9e2a-11eb-81d1-8c85906a186d
+#   -2021-01-12 09:43:32;TSM;sell;121.73;USD;2754;dba1ae64-9e2a-11eb-a6e6-8c85906a186d
+#   -2021-01-12 10:08:58;TSM;sell;131.02;USD;6864;dba1b170-9e2a-11eb-a251-8c85906a186d
+#   -2021-01-12 12:01:51;NVDA;buy;608.31;USD;9425;dba1c1e2-9e2a-11eb-a3d5-8c85906a186d
+#   -2021-01-12 13:20:57;NVDA;sell;560.45;USD;5530;dba1cd36-9e2a-11eb-927f-8c85906a186d
+#   -2021-01-12 17:11:13;TSM;buy;133.54;USD;1913;dba1ef1e-9e2a-11eb-8f0c-8c85906a186d
+#   -2021-01-12 17:38:59;NVDA;buy;529.26;USD;7098;dba1f2d4-9e2a-11eb-85ed-8c85906a186d
+1:ok: filtr -t pos
+1:ok: filtr -t profit
+1:ok: docasne soubory:
+#------------------------------------------------------
+10:celkove score (max pro hodnoceni 15)
+10:celkem bodu za projekt
